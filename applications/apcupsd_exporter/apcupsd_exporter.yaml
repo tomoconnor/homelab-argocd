@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: smokeping
+  name: apcupsd-exporter
   namespace: argocd
 spec:
   syncPolicy:
@@ -11,12 +11,12 @@ spec:
     name: "in-cluster"
     namespace: monitoring
   sources:
-    - repoURL: https://djjudas21.github.io/charts/
-      targetRevision: 0.1.3
-      chart: smokeping
+    - repoURL: https://github.com/tomoconnor/homelab-helm-charts.git
+      targetRevision: HEAD
+      path: genericapp
       helm:
         valueFiles:
-          - $values/smokeping.values.yaml
+          - $values/apcupsd_exporter.values.yaml
     - repoURL: "https://github.com/tomoconnor/argocd-helm-values.git"
       targetRevision: HEAD
       ref: values
