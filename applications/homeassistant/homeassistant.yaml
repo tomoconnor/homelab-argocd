@@ -12,8 +12,9 @@ spec:
     namespace: monitoring
   sources:
     - repoURL: https://github.com/tomoconnor/home-assistant-helm-chart.git
-      targetRevision: latest
-      chart: home-assistant
+      targetRevision: v0.1
+      path: charts/home-assistant
+      # chart: home-assistant
       helm:
         valueFiles:
           - $values/homeassistant.values.yaml
