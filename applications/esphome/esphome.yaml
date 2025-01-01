@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: esphome
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+  project: default
+  destination:
+    name: "in-cluster"
+    namespace: monitoring
+  sources:
+    - repoURL: ghcr.io/gabe565/charts
+      targetRevision: 0.15.0
+      chart: esphome
+      helm:
+        valueFiles:
+          - $values/esphome.values.yaml
+    - repoURL: "https://github.com/tomoconnor/argocd-helm-values.git"
+      targetRevision: HEAD
+      ref: values
+    
